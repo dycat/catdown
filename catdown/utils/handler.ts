@@ -70,21 +70,21 @@ class ParagraphHandler extends Handler<ParseElement> {
     }
 }
 
-class Header1ChainHandler extends ParseChainHandler {
+export class Header1ChainHandler extends ParseChainHandler {
     constructor(document: IMarkdownDocument) {
-        super(document, "#", new Header1Visitor());
+        super(document, "# ", new Header1Visitor());
     }
 }
 
 class Header2ChainHandler extends ParseChainHandler {
     constructor(document: IMarkdownDocument) {
-        super(document, "##", new Header2Visitor());
+        super(document, "## ", new Header2Visitor());
     }
 }
 
 class Haeader3ChainHandler extends ParseChainHandler {
     constructor(document: IMarkdownDocument) {
-        super(document, "###", new Header3Visitor());
+        super(document, "### ", new Header3Visitor());
     }
 }
 
@@ -94,7 +94,7 @@ class HorizontalRuleHandler extends ParseChainHandler {
     }
 }
 
-class ChainOfResponsibilityFactory {
+export class ChainOfResponsibilityFactory {
     Build(document: IMarkdownDocument) : ParseChainHandler {
         let header1: Header1ChainHandler = new Header1ChainHandler(document);
         let header2: Header2ChainHandler = new Header2ChainHandler(document);

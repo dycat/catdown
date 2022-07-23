@@ -3,12 +3,16 @@ import Head from 'next/head'
 import Image from 'next/image'
 import React, { SyntheticEvent, useState } from 'react'
 import styles from '../styles/Home.module.css'
+import { Markdown } from '../utils/markdown'
 
 const Home: NextPage = () => {
   const [inputText, setInputText] = useState("")
 
   function handleInputTest(e: React.ChangeEvent<HTMLInputElement>) {
-    setInputText(e.target.value);
+    let markdown: Markdown = new Markdown()
+    let inputText: string = e.target.value;
+    let markdownOutput = markdown.toHTML(inputText);
+    setInputText(markdownOutput);
   }
   
   return (
@@ -25,7 +29,7 @@ const Home: NextPage = () => {
         </h1>
 
         <textarea name="" id="" cols="30" rows="10" onChange={handleInputTest}></textarea>
-        <label htmlFor="">{inputText}</label>
+        <div dangerouslySetInnerHTML={{__html: inputText}}></div>
       </main>
     </div>
   )

@@ -1,9 +1,9 @@
-interface IMarkdowDocument {
+export interface IMarkdownDocument {
     add(...content: string[]) : void;
     get() : string;
 }
 
-class MarkdownDocument implements IMarkdowDocument {
+export class MarkdownDocument implements IMarkdownDocument {
 
     private content: string = "";
 
@@ -17,5 +17,3 @@ class MarkdownDocument implements IMarkdowDocument {
     }
     
 }
-
-export {}

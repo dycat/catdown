@@ -2,6 +2,8 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
 import React, { useState } from "react";
+import { Title } from "../components/Title";
+import { Display } from "../components/Display";
 import { Markdown } from "../utils/markdown";
 
 const Home: NextPage = () => {
@@ -23,9 +25,10 @@ const Home: NextPage = () => {
       </Head>
 
       <main className="flex flex-col">
-        <h1 className="w-full m-4 h-1/5 font-sans font-medium text-2xl">
-          Cat Down
-        </h1>
+        <div className="w-full m-4 h-1/5">
+          <Title />
+        </div>
+
         <div className="flex flex-row w-full h-screen gap-8">
           <div className="h-5/6 w-1/2">
             <textarea
@@ -35,10 +38,8 @@ const Home: NextPage = () => {
               onChange={handleInputTest}
             ></textarea>
           </div>
-          <div
-            className="w-1/2 h-full m-4 p-4"
-            dangerouslySetInnerHTML={{ __html: inputText }}
-          ></div>
+
+          <Display text={inputText}></Display>
         </div>
       </main>
     </div>

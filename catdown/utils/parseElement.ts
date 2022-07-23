@@ -1,3 +1,3 @@
 export class ParseElement {
-    Currentline: string = "";
+  Currentline: string = "";
 }

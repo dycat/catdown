@@ -1,11 +1,15 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
-import { useState } from 'react'
+import React, { SyntheticEvent, useState } from 'react'
 import styles from '../styles/Home.module.css'
 
 const Home: NextPage = () => {
   const [inputText, setInputText] = useState("")
+
+  function handleInputTest(e: React.ChangeEvent<HTMLInputElement>) {
+    setInputText(e.target.value);
+  }
   
   return (
     <div className={styles.container}>
@@ -20,8 +24,8 @@ const Home: NextPage = () => {
           CatDown - A markdown editor
         </h1>
 
-        <textarea name="" id="" cols="30" rows="10">{inputText}</textarea>
-        <label htmlFor=""></label>
+        <textarea name="" id="" cols="30" rows="10" onChange={handleInputTest}></textarea>
+        <label htmlFor="">{inputText}</label>
       </main>
     </div>
   )

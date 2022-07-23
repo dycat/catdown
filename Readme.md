@@ -9,3 +9,7 @@ TODOs
 [x] Update preview when input new words
 
 [] style UI
+
+[] Enhance markdown support, [follow gfm](https://github.github.com/gfm/)
+
+    [] ATX heading

@@ -4,6 +4,9 @@ import {
   Header1Visitor,
   Header2Visitor,
   Header3Visitor,
+  Header4Visitor,
+  Header5Visitor,
+  Header6Visitor,
   HorizontalRuleVisitor,
   IVisitable,
   IVisitor,
@@ -80,6 +83,9 @@ class ParagraphHandler extends Handler<ParseElement> {
   }
 }
 
+/**
+ * Header chain handler for h1, h2, h3, h4, h5, h6
+ */
 export class Header1ChainHandler extends ParseChainHandler {
   constructor(document: IMarkdownDocument) {
     super(document, "# ", new Header1Visitor());
@@ -92,9 +98,27 @@ class Header2ChainHandler extends ParseChainHandler {
   }
 }
 
-class Haeader3ChainHandler extends ParseChainHandler {
+class Header3ChainHandler extends ParseChainHandler {
   constructor(document: IMarkdownDocument) {
     super(document, "### ", new Header3Visitor());
+  }
+}
+
+class Header4ChainHandler extends ParseChainHandler {
+  constructor(document: IMarkdownDocument) {
+    super(document, "#### ", new Header4Visitor());
+  }
+}
+
+class Header5ChainHandler extends ParseChainHandler {
+  constructor(document: IMarkdownDocument) {
+    super(document, "##### ", new Header5Visitor());
+  }
+}
+
+class Header6ChainHandler extends ParseChainHandler {
+  constructor(document: IMarkdownDocument) {
+    super(document, "###### ", new Header6Visitor());
   }
 }
 
@@ -108,7 +132,10 @@ export class ChainOfResponsibilityFactory {
   Build(document: IMarkdownDocument): ParseChainHandler {
     let header1: Header1ChainHandler = new Header1ChainHandler(document);
     let header2: Header2ChainHandler = new Header2ChainHandler(document);
-    let header3: Haeader3ChainHandler = new Haeader3ChainHandler(document);
+    let header3: Header3ChainHandler = new Header3ChainHandler(document);
+    let header4: Header4ChainHandler = new Header4ChainHandler(document);
+    let header5: Header5ChainHandler = new Header5ChainHandler(document);
+    let header6: Header6ChainHandler = new Header6ChainHandler(document);
     let horizontalRule: HorizontalRuleHandler = new HorizontalRuleHandler(
       document
     );
@@ -116,7 +143,10 @@ export class ChainOfResponsibilityFactory {
 
     header1.setNext(header2);
     header2.setNext(header3);
-    header3.setNext(horizontalRule);
+    header3.setNext(header4);
+    header4.setNext(header5);
+    header5.setNext(header6);
+    header6.setNext(horizontalRule);
     horizontalRule.setNext(paragraph);
 
     return header1;

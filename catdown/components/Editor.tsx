@@ -13,13 +13,11 @@ export function Editor(): JSX.Element {
   }
 
   return (
-    <div className="flex flex-row w-full h-screen gap-8">
-      <div className="h-5/6 w-1/2">
+    <div className="flex flex-row w-5/6 h-5/6 gap-8">
         <textarea
-          className="w-full h-full m-4 p-4 focus:outline-none rounded border border-stone-500"
+          className="w-1/2 h-5/6 m-4 p-4 focus:outline-none rounded border border-stone-500"
           onChange={handleInputText}
         ></textarea>
-      </div>
 
       <Display text={inputText}></Display>
     </div>

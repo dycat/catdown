@@ -13,6 +13,7 @@ export class TagTypeToHTML {
     this.tagType.set(TagType.Header4, "h4");
     this.tagType.set(TagType.Header5, "h5");
     this.tagType.set(TagType.Header6, "h6");
+    this.tagType.set(TagType.List, "li");
     this.tagType.set(TagType.Paragraph, "p");
     this.tagType.set(TagType.HorizontalRule, "hr");
   }

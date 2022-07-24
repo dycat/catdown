@@ -10,6 +10,7 @@ import {
   HorizontalRuleVisitor,
   IVisitable,
   IVisitor,
+  ListVisitor,
   ParagraphVisitor,
   Visitable,
 } from "./visitor";
@@ -122,6 +123,12 @@ class Header6ChainHandler extends ParseChainHandler {
   }
 }
 
+class ListChainHandler extends ParseChainHandler {
+  constructor(document: IMarkdownDocument) {
+    super(document, "- ", new ListVisitor());
+  }
+}
+
 class HorizontalRuleHandler extends ParseChainHandler {
   constructor(document: IMarkdownDocument) {
     super(document, "---", new HorizontalRuleVisitor());
@@ -136,6 +143,7 @@ export class ChainOfResponsibilityFactory {
     let header4: Header4ChainHandler = new Header4ChainHandler(document);
     let header5: Header5ChainHandler = new Header5ChainHandler(document);
     let header6: Header6ChainHandler = new Header6ChainHandler(document);
+    let list: ListChainHandler = new ListChainHandler(document);
     let horizontalRule: HorizontalRuleHandler = new HorizontalRuleHandler(
       document
     );
@@ -146,7 +154,8 @@ export class ChainOfResponsibilityFactory {
     header3.setNext(header4);
     header4.setNext(header5);
     header5.setNext(header6);
-    header6.setNext(horizontalRule);
+    header6.setNext(list);
+    list.setNext(horizontalRule);
     horizontalRule.setNext(paragraph);
 
     return header1;

@@ -66,6 +66,12 @@ export class Header6Visitor extends VisitorBase {
   }
 }
 
+export class ListVisitor extends VisitorBase {
+    constructor() {
+      super(TagType.List, new TagTypeToHTML());
+    }
+  }
+
 export class ParagraphVisitor extends VisitorBase {
   constructor() {
     super(TagType.Paragraph, new TagTypeToHTML());

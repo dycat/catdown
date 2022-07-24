@@ -6,5 +6,6 @@ export enum TagType {
   Header4,
   Header5,
   Header6,
+  List,
   HorizontalRule,
 }
